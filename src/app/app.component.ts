@@ -81,7 +81,7 @@ export class AppComponent {
     hoverEffect: 'default' | 'zoom' | 'blur' | 'shadow';
     position: { x: number; y: number };
   }) {
-    shape.hoverEffect = 'default';
+    // shape.hoverEffect = 'default';
   }
   dragEnded(
     event: CdkDragEnd,
@@ -128,5 +128,11 @@ export class AppComponent {
 
   toggleOpen(name: string): void {
     this.openMap[name] = !this.isOpen(name);
+  }
+  ngOnInit(): void {
+    const savedShapes = localStorage.getItem('selectedShapes');
+    if (savedShapes) {
+      this.selectedShapes = JSON.parse(savedShapes);
+    }
   }
 }
